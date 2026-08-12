@@ -1,0 +1,10 @@
+.DS_Store
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+*.tar
+*.tar.gz
+__pycache__/
+.venv/
