@@ -1,4 +1,8 @@
 <p align="center">
+  <strong>English</strong> | <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
   <img src="assets/qwen36-instruct-banner.png" alt="Qwen3.6 Instruct Series — fast, direct instruction following and tool execution" width="100%">
 </p>
 
@@ -34,8 +38,6 @@ We are continuing the **Instruct** line because directness is a first-class capa
 - reserve deep reasoning for the requests that actually need it.
 
 **The goal is not less intelligence. It is intelligence with a transmission.**
-
-中文愿景：我们仍然相信 Instruct 模型的价值。Thinking 是能力，不应成为每次请求都必须缴纳的延迟与算力税；在工具调用、Agent 执行、交互式应用和速度敏感的生产场景里，直接、稳定、可控同样是一种智能。
 
 ## Releases
 
