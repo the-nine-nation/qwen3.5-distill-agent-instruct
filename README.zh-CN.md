@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-  <img src="assets/qwen36-instruct-banner.png" alt="Qwen3.6 Instruct 系列——快速、直接的指令遵循与工具执行" width="100%">
+  <img src="assets/qwen36-instruct-banner.png" alt="Qwen3.5 Distill Agent Instruct——快速、直接的指令遵循与工具执行" width="100%">
 </p>
 
-<h1 align="center">Qwen3.6 Instruct 系列</h1>
+<h1 align="center">Qwen3.5 Distill Agent Instruct</h1>
 
 <p align="center">
   <strong>Thinking 是一种能力，而不应成为一种税。</strong><br>
@@ -14,14 +14,14 @@
 </p>
 
 <p align="center">
-  <a href="https://huggingface.co/lzy510016411/qwen3.6-9b-instruct"><img alt="模型" src="https://img.shields.io/badge/%F0%9F%A4%97_%E6%A8%A1%E5%9E%8B-Qwen3.6--9B--Instruct-FFD21E"></a>
-  <a href="https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix"><img alt="数据集" src="https://img.shields.io/badge/%F0%9F%A4%97_%E6%95%B0%E6%8D%AE%E9%9B%86-Agent--Instruct_Mix-FFD21E"></a>
+  <a href="https://huggingface.co/lzy510016411/qwen3.5-9b-distill-agent-instruct"><img alt="模型" src="https://img.shields.io/badge/%F0%9F%A4%97_%E6%A8%A1%E5%9E%8B-Qwen3.5--9B--Distill--Agent-FFD21E"></a>
+  <a href="https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces"><img alt="数据集" src="https://img.shields.io/badge/%F0%9F%A4%97_%E6%95%B0%E6%8D%AE%E9%9B%86-Mixed--Agent--Traces-FFD21E"></a>
   <a href="LICENSE"><img alt="许可证" src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"></a>
-  <a href="https://github.com/the-nine-nation/qwen3.6-instruct-series/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/the-nine-nation/qwen3.6-instruct-series?style=flat"></a>
+  <a href="https://github.com/the-nine-nation/qwen3.5-distill-agent-instruct/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/the-nine-nation/qwen3.5-distill-agent-instruct?style=flat"></a>
 </p>
 
 > [!IMPORTANT]
-> **Qwen3.6 是基于 Qwen3.5-9B 构建的社区后训练项目，并非 Qwen 官方发布的模型。**
+> **Qwen3.5-9B-Distill-Agent-Instruct 是基于 Qwen3.5-9B 构建的社区蒸馏后训练项目，并非 Qwen 官方发布的模型。**
 
 ## Instruct 模型并没有过时
 
@@ -43,11 +43,11 @@ API 路由器需要选对调用；Agent 运行时需要合法参数；代码助�
 
 | 发布物 | 内容 | 链接 |
 |---|---|---|
-| **Qwen3.6-9B-Instruct** | 已合并的 BF16 模型，无需单独加载适配器 | [Hugging Face 模型](https://huggingface.co/lzy510016411/qwen3.6-9b-instruct) |
-| **Qwen3.6 Agent-Instruct Trajectory Mix** | 20,409 条经过作者专属清洗的后训练数据 | [Hugging Face 数据集](https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix) |
+| **Qwen3.5-9B-Distill-Agent-Instruct** | 已合并的 BF16 模型，无需单独加载适配器 | [Hugging Face 模型](https://huggingface.co/lzy510016411/qwen3.5-9b-distill-agent-instruct) |
+| **Fable5 · GPT-5.5 · Opus-4.7 Mixed Agent Traces** | 20,409 条经过作者专属清洗的后训练数据 | [Hugging Face 数据集](https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces) |
 | **Qwen3.5-9B** | 上游基础模型 | [基础模型](https://huggingface.co/Qwen/Qwen3.5-9B) |
 
-## Qwen3.6-9B-Instruct 面向什么场景
+## Qwen3.5-9B-Distill-Agent-Instruct 面向什么场景
 
 - 直接遵循指令并生成有效最终答案
 - Function Calling 与工具调用边界判断
@@ -69,13 +69,13 @@ API 路由器需要选对调用；Agent 运行时需要合法参数；代码助�
 | 精度 | BF16 |
 | 训练运行时 | Gradient Checkpointing、Liger Kernel、DeepSpeed ZeRO-3 |
 
-完整的目标投影层、优化参数、架构说明、预期用途和限制，请参阅[完整模型卡](https://huggingface.co/lzy510016411/qwen3.6-9b-instruct)。
+完整的目标投影层、优化参数、架构说明、预期用途和限制，请参阅[完整模型卡](https://huggingface.co/lzy510016411/qwen3.5-9b-distill-agent-instruct)。
 
 ## BFCL 工具调用评测
 
 本次后训练评测使用 **Berkeley Function Calling Leaderboard（BFCL）** Non-Live 测试集。`Δ` 表示相较 Qwen3.5-9B 基础模型的绝对百分点变化。
 
-| 类别 | 基础模型 | Qwen3.6 | Δ |
+| 类别 | 基础模型 | Distill Agent Instruct | Δ |
 |---|---:|---:|---:|
 | Simple Python（400） | **92.00%** | 91.50% | -0.50 pp |
 | Multiple（200） | 94.00% | **96.00%** | **+2.00 pp** |
@@ -93,7 +93,7 @@ API 路由器需要选对调用；Agent 运行时需要合法参数；代码助�
 使用支持 Qwen3.5 的较新版本 vLLM 启动已合并模型：
 
 ```bash
-vllm serve lzy510016411/qwen3.6-9b-instruct \
+vllm serve lzy510016411/qwen3.5-9b-distill-agent-instruct \
   --port 8000 \
   --tensor-parallel-size 1 \
   --max-model-len 262144 \
@@ -112,7 +112,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="local")
 
 response = client.chat.completions.create(
-    model="lzy510016411/qwen3.6-9b-instruct",
+    model="lzy510016411/qwen3.5-9b-distill-agent-instruct",
     messages=[
         {"role": "user", "content": "请总结低延迟 Instruct 模型为何依然重要。"}
     ],
@@ -126,7 +126,7 @@ print(response.choices[0].message.content)
 
 ## 模型背后的数据
 
-[Qwen3.6 Agent-Instruct Trajectory Mix](https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix) 混合了长程 Agent 轨迹、步骤级工具调用样本、Function Calling 对话、代码指令、轨迹反演样本，以及经过平衡的“调用工具还是直接回答”监督数据。
+[Fable5 · GPT-5.5 · Opus-4.7 Mixed Agent Traces](https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces) 混合了长程 Agent 轨迹、步骤级工具调用样本、Function Calling 对话、代码指令、轨迹反演样本，以及经过平衡的“调用工具还是直接回答”监督数据。名称突出三个主要的模型标注来源；`mixed` 还涵盖 GLM-5.2、Qwen3.7-Max、Glaive、Hermes、When2Call 与代码数据。
 
 公开版本包含：
 
@@ -135,17 +135,17 @@ print(response.choices[0].message.content)
 - **67,865** 个显式工具调用步骤
 - **11,580** 条包含工具定义的记录
 
-作者专属处理流程涵盖 Schema 归一化、轨迹完整性检查、有效步骤切分、Judge 门控过滤、来源感知采样、结构与内容去重，以及工具使用再平衡。完整的数据组成及限制请阅读[数据集卡片](https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix)。
+作者专属处理流程涵盖 Schema 归一化、轨迹完整性检查、有效步骤切分、Judge 门控过滤、来源感知采样、结构与内容去重，以及工具使用再平衡。完整的数据组成及限制请阅读[数据集卡片](https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces)。
 
 ## 路线图
 
-- [x] 发布合并后的 Qwen3.6-9B-Instruct 模型
+- [x] 发布合并后的 Qwen3.5-9B-Distill-Agent-Instruct 模型
 - [x] 发布经过清洗的轨迹混合数据集
 - [x] 公布 BFCL Non-Live 结果及延迟观测
 - [ ] 将可复现评测扩展至 Function Calling 之外
 - [ ] 添加量化部署方案
 - [ ] 在不牺牲 Irrelevance 判断的前提下改进 Parallel Multiple 调用
-- [ ] 探索 Qwen3.6 Instruct 系列的更多参数规模
+- [ ] 探索 Qwen3.5 Distill Agent Instruct 系列的更多参数规模
 - [ ] 继续证明快速、直接的模型值得获得严肃的后训练投入
 
 ## 加入项目

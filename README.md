@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-  <img src="assets/qwen36-instruct-banner.png" alt="Qwen3.6 Instruct Series — fast, direct instruction following and tool execution" width="100%">
+  <img src="assets/qwen36-instruct-banner.png" alt="Qwen3.5 Distill Agent Instruct — fast, direct instruction following and tool execution" width="100%">
 </p>
 
-<h1 align="center">Qwen3.6 Instruct Series</h1>
+<h1 align="center">Qwen3.5 Distill Agent Instruct</h1>
 
 <p align="center">
   <strong>Thinking is a capability. It should not be a tax.</strong><br>
@@ -14,14 +14,14 @@
 </p>
 
 <p align="center">
-  <a href="https://huggingface.co/lzy510016411/qwen3.6-9b-instruct"><img alt="Model" src="https://img.shields.io/badge/%F0%9F%A4%97_Model-Qwen3.6--9B--Instruct-FFD21E"></a>
-  <a href="https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix"><img alt="Dataset" src="https://img.shields.io/badge/%F0%9F%A4%97_Dataset-Agent--Instruct_Mix-FFD21E"></a>
+  <a href="https://huggingface.co/lzy510016411/qwen3.5-9b-distill-agent-instruct"><img alt="Model" src="https://img.shields.io/badge/%F0%9F%A4%97_Model-Qwen3.5--9B--Distill--Agent-FFD21E"></a>
+  <a href="https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces"><img alt="Dataset" src="https://img.shields.io/badge/%F0%9F%A4%97_Dataset-Mixed--Agent--Traces-FFD21E"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-blue.svg"></a>
-  <a href="https://github.com/the-nine-nation/qwen3.6-instruct-series/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/the-nine-nation/qwen3.6-instruct-series?style=flat"></a>
+  <a href="https://github.com/the-nine-nation/qwen3.5-distill-agent-instruct/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/the-nine-nation/qwen3.5-distill-agent-instruct?style=flat"></a>
 </p>
 
 > [!IMPORTANT]
-> **Qwen3.6 is a community post-training project built from Qwen3.5-9B. It is not an official Qwen release.**
+> **Qwen3.5-9B-Distill-Agent-Instruct is a community distilled post-training project built from Qwen3.5-9B. It is not an official Qwen release.**
 
 ## The Instruct model is not obsolete
 
@@ -43,11 +43,11 @@ We are continuing the **Instruct** line because directness is a first-class capa
 
 | Artifact | What it contains | Link |
 |---|---|---|
-| **Qwen3.6-9B-Instruct** | BF16 merged checkpoint; no separate adapter required | [Model on Hugging Face](https://huggingface.co/lzy510016411/qwen3.6-9b-instruct) |
-| **Qwen3.6 Agent-Instruct Trajectory Mix** | 20,409 author-curated post-training records | [Dataset on Hugging Face](https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix) |
+| **Qwen3.5-9B-Distill-Agent-Instruct** | BF16 merged checkpoint; no separate adapter required | [Model on Hugging Face](https://huggingface.co/lzy510016411/qwen3.5-9b-distill-agent-instruct) |
+| **Fable5 · GPT-5.5 · Opus-4.7 Mixed Agent Traces** | 20,409 author-curated post-training records | [Dataset on Hugging Face](https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces) |
 | **Qwen3.5-9B** | Upstream base checkpoint | [Base model](https://huggingface.co/Qwen/Qwen3.5-9B) |
 
-## What Qwen3.6-9B-Instruct is built for
+## What Qwen3.5-9B-Distill-Agent-Instruct is built for
 
 - Direct instruction following and useful final answers
 - Function calling and tool-selection boundaries
@@ -69,13 +69,13 @@ The language model was post-trained with **rank-stabilized LoRA (rsLoRA)** acros
 | Precision | BF16 |
 | Runtime | Gradient checkpointing, Liger Kernel, DeepSpeed ZeRO-3 |
 
-See the [full model card](https://huggingface.co/lzy510016411/qwen3.6-9b-instruct) for target projections, optimization details, architecture notes, intended use, and limitations.
+See the [full model card](https://huggingface.co/lzy510016411/qwen3.5-9b-distill-agent-instruct) for target projections, optimization details, architecture notes, intended use, and limitations.
 
 ## BFCL tool-calling results
 
 The supplied post-training evaluation uses the **Berkeley Function Calling Leaderboard (BFCL)** non-live test set. `Δ` is the absolute change from the Qwen3.5-9B base checkpoint.
 
-| Category | Base | Qwen3.6 | Δ |
+| Category | Base | Distill Agent Instruct | Δ |
 |---|---:|---:|---:|
 | Simple Python (400) | **92.00%** | 91.50% | -0.50 pp |
 | Multiple (200) | 94.00% | **96.00%** | **+2.00 pp** |
@@ -93,7 +93,7 @@ The gains are not uniform: simple Python and parallel-multiple cases regress sli
 Serve the merged checkpoint with a recent vLLM build that supports Qwen3.5:
 
 ```bash
-vllm serve lzy510016411/qwen3.6-9b-instruct \
+vllm serve lzy510016411/qwen3.5-9b-distill-agent-instruct \
   --port 8000 \
   --tensor-parallel-size 1 \
   --max-model-len 262144 \
@@ -112,7 +112,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="local")
 
 response = client.chat.completions.create(
-    model="lzy510016411/qwen3.6-9b-instruct",
+    model="lzy510016411/qwen3.5-9b-distill-agent-instruct",
     messages=[
         {"role": "user", "content": "Summarize why low-latency instruct models still matter."}
     ],
@@ -126,7 +126,7 @@ For tool calling, pass JSON-schema tool definitions through the OpenAI-compatibl
 
 ## The data behind the model
 
-[Qwen3.6 Agent-Instruct Trajectory Mix](https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix) combines long-horizon agent traces, step-level tool-use examples, function-calling conversations, code instructions, trace inversion, and balanced call-versus-answer supervision.
+[Fable5 · GPT-5.5 · Opus-4.7 Mixed Agent Traces](https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces) combines long-horizon agent traces, step-level tool-use examples, function-calling conversations, code instructions, trace inversion, and balanced call-versus-answer supervision. Its name highlights three principal model-labelled sources while `mixed` covers the additional GLM-5.2, Qwen3.7-Max, Glaive, Hermes, When2Call, and code components.
 
 The public release contains:
 
@@ -135,17 +135,17 @@ The public release contains:
 - **67,865** explicit tool-call steps
 - **11,580** records with tool definitions
 
-Its author-curated pipeline includes schema normalization, trajectory-integrity checks, meaningful step slicing, judge-gated filtering, source-aware sampling, structural/content deduplication, and tool-use rebalancing. Read the [dataset card](https://huggingface.co/datasets/lzy510016411/qwen3.6-agent-instruct-trajectory-mix) for the full mixture composition and limitations.
+Its author-curated pipeline includes schema normalization, trajectory-integrity checks, meaningful step slicing, judge-gated filtering, source-aware sampling, structural/content deduplication, and tool-use rebalancing. Read the [dataset card](https://huggingface.co/datasets/lzy510016411/fable5-gpt5.5-opus4.7-mixed-agent-traces) for the full mixture composition and limitations.
 
 ## Roadmap
 
-- [x] Release the merged Qwen3.6-9B-Instruct checkpoint
+- [x] Release the merged Qwen3.5-9B-Distill-Agent-Instruct checkpoint
 - [x] Release the curated trajectory mixture
 - [x] Publish BFCL non-live results and latency observations
 - [ ] Expand reproducible evaluations beyond function calling
 - [ ] Add quantized deployment recipes
 - [ ] Improve parallel-multiple calls without sacrificing irrelevance detection
-- [ ] Explore additional sizes in the Qwen3.6 Instruct family
+- [ ] Explore additional sizes in the Qwen3.5 Distill Agent Instruct family
 - [ ] Keep proving that fast, direct models deserve serious post-training
 
 ## Join the project
